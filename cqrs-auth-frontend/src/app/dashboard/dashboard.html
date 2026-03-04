@@ -1,0 +1,59 @@
+<div class="sidebar">
+  <h4 class="text-white">User Panel</h4>
+  <a routerLink="/dashboard" routerLinkActive="active">My Tasks</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <h3 class="mb-4">My Assigned Tasks</h3>
+
+  <!-- No Tasks Message -->
+  <div *ngIf="!tasks || tasks.length === 0" class="alert alert-info">
+    No tasks assigned yet.
+  </div>
+
+  <!-- Task Cards -->
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let task of tasks">
+      <div class="card shadow h-100">
+        <div class="card-body">
+
+          <h5 class="card-title">{{ task.title }}</h5>
+
+          <p class="card-text text-muted">
+            {{ task.description }}
+          </p>
+
+          <p>
+            <strong>Deadline:</strong>
+            {{ task.deadline | date:'mediumDate' }}
+          </p>
+
+          <!-- Status Badge -->
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning text-dark': task.status === 'Pending',
+              'bg-success': task.status === 'Completed',
+              'bg-danger': task.status === 'Overdue'
+            }">
+            {{ task.status }}
+          </span>
+
+          <!-- Action Button -->
+          <div class="mt-3">
+<button
+  *ngIf="task.status !== 'Completed'"
+  class="btn btn-sm w-100 theme-btn"
+  (click)="markCompleted(task.id)">
+  Mark as Completed
+</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

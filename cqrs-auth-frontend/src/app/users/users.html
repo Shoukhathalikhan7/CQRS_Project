@@ -1,0 +1,86 @@
+<div class="sidebar">
+  <h4 class="text-white">Admin Panel</h4>
+
+<a routerLink="/users" routerLinkActive="active">Users</a>
+<a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
+
+  <hr class="text-white">
+
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <div class="topbar d-flex justify-content-between align-items-center">
+    <h4>Users Management</h4>
+  </div>
+
+  <div class="card-custom">
+
+    <input 
+      type="text"
+      class="form-control mb-3"
+      placeholder="Search by username or email"
+      [(ngModel)]="searchText"
+      (input)="applyFilters()"
+    />
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>SI.No</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th width="180">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngIf="paginatedUsers.length === 0">
+          <td colspan="5" class="text-center">No users found</td>
+        </tr>
+
+        <tr *ngFor="let user of paginatedUsers; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="badge bg-primary">{{ user.role }}</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-success me-2"
+                    (click)="promoteUser(user.id)">
+              Promote
+            </button>
+
+            <button class="btn btn-sm btn-danger"
+                    (click)="deleteUser(user.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-primary"
+              (click)="prevPage()"
+              [disabled]="currentPage === 1">
+        Previous
+      </button>
+
+      <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+
+      <button class="btn btn-primary"
+              (click)="nextPage()"
+              [disabled]="currentPage === totalPages()">
+        Next
+      </button>
+    </div>
+
+  </div>
+
+</div>

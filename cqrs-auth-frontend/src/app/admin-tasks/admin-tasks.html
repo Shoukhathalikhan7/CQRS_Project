@@ -1,0 +1,106 @@
+<div class="sidebar">
+  <h4 class="text-white">Admin Panel</h4>
+  <a routerLink="/users" routerLinkActive="active">Users</a>
+  <a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <h3 class="mb-4">Assign New Task</h3>
+
+  <div class="card p-4 mb-4 shadow">
+
+    <input class="form-control mb-2"
+           placeholder="Title"
+           [(ngModel)]="taskData.title">
+
+    <textarea class="form-control mb-2"
+              placeholder="Description"
+              [(ngModel)]="taskData.description"></textarea>
+
+    <input type="date"
+           class="form-control mb-2"
+           [(ngModel)]="taskData.deadline">
+
+    <select class="form-control mb-3"
+            [(ngModel)]="taskData.assignedToEmail">
+      <option value="">Select User</option>
+      <option *ngFor="let user of users"
+              [value]="user.email">
+        {{ user.username }} ({{ user.email }})
+      </option>
+    </select>
+
+    <button class="btn btn-primary w-100"
+            (click)="addTask()">
+      Assign Task
+    </button>
+
+  </div>
+
+  <h4>All Tasks</h4>
+
+  <!-- 🔥 FILTER DROPDOWN -->
+<div class="mb-3" style="width: 220px; position: relative;">
+  
+  <select class="form-control custom-dropdown"
+          [(ngModel)]="selectedStatus">
+    <option value="All">All</option>
+    <option value="Pending">Pending</option>
+    <option value="Completed">Completed</option>
+  </select>
+
+  <!-- Custom Arrow -->
+  <span class="dropdown-arrow">&#9662;</span>
+
+</div>
+
+  <table class="table table-hover shadow">
+    <thead class="table-primary">
+      <tr>
+        <th>Title</th>
+        <th>Assigned To</th>
+        <th>Status</th>
+        <th>Deadline</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <!-- No tasks -->
+      <tr *ngIf="filteredTasks.length === 0">
+        <td colspan="5" class="text-center text-muted">
+          No tasks available
+        </td>
+      </tr>
+
+      <!-- Task rows -->
+      <tr *ngFor="let task of filteredTasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.assignedToEmail }}</td>
+        <td>
+          <span class="badge bg-warning"
+                *ngIf="task.status === 'Pending'">
+            Pending
+          </span>
+
+          <span class="badge bg-success"
+                *ngIf="task.status === 'Completed'">
+            Completed
+          </span>
+        </td>
+        <td>{{ task.deadline | date:'mediumDate' }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm"
+                  (click)="deleteTask(task.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
