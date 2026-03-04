@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac717dc4a61ddf12c5b7c616c8924ab5221eb653")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e708c68d2699536f35259a02ade8b745aa997f68")]
 [assembly: System.Reflection.AssemblyProductAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
