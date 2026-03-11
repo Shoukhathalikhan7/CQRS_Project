@@ -1,24 +1,50 @@
 <div class="container mt-5">
-  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+  <mat-card class="shadow p-4 mx-auto" style="max-width: 400px;">
+
     <h2 class="text-center mb-4">Login</h2>
 
     <div class="mb-3">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-control"
-             [(ngModel)]="loginData.email" placeholder="Enter email">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+
+        <input matInput
+               type="email"
+               [(ngModel)]="loginData.email"
+               placeholder="Enter email">
+
+      </mat-form-field>
+
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Password</label>
-      <input type="password" class="form-control"
-             [(ngModel)]="loginData.password" placeholder="Enter password">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+
+        <input matInput
+               type="password"
+               [(ngModel)]="loginData.password"
+               placeholder="Enter password">
+
+      </mat-form-field>
+
     </div>
 
-    <button class="btn btn-primary w-100" (click)="login()">Login</button>
+<button
+  mat-raised-button
+  color="primary"
+  class="w-100 login-btn"
+  (click)="login()">
+
+  Login
+
+</button>
 
     <p class="text-center mt-3">
       Don't have an account?
       <a routerLink="/signup">Signup</a>
     </p>
-  </div>
+
+  </mat-card>
 </div>

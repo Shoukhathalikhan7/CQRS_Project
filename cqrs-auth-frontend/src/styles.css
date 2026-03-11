@@ -79,3 +79,18 @@ body {
   background-color: #162d66;
   color: white;
 }
+.mat-mdc-select-panel{
+  background:white !important;
+}
+
+.mat-mdc-option{
+  background:white !important;
+}
+
+.mat-mdc-select-panel{
+  background:white !important;
+}
+
+.mat-datepicker-content{
+  background:white !important;
+}

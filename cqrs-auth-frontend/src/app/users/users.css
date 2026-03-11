@@ -1,3 +1,90 @@
-.container {
-  max-width: 900px;
+.main-content{
+  margin-left:220px;
+  padding:30px;
+}
+
+.search-field{
+  width:350px;
+  margin-bottom:20px;
+}
+
+.user-table{
+  width:100%;
+}
+
+.role-badge{
+  background:#2b4a8b;
+  color:white;
+  padding:4px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.pagination-box{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px;
+}
+/* Fix input text touching border */
+::ng-deep .mat-mdc-form-field-infix{
+  padding:14px 12px !important;
+}
+
+/* Fix input field height */
+::ng-deep .mat-mdc-text-field-wrapper{
+  height:56px;
+}
+
+/* Search input width */
+.search-field{
+  width:350px;
+  margin-bottom:20px;
+}
+.promote-btn{
+  background:#198754 !important;
+  color:white !important;
+  margin-right:8px;
+}
+
+.delete-btn{
+  background:#dc3545 !important;
+  color:white !important;
+}
+.pagination-btn{
+  background:#2b4a8b !important;
+  color:white !important;
+}
+.user-table td:last-child{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.user-table{
+  width:100%;
+}
+
+.user-table th{
+  font-weight:600;
+}
+
+.user-table td{
+  padding:12px;
+}
+
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #1976d2 !important;
+  border-width: 2px !important;
+}
+::ng-deep .success-snackbar{
+background:#2e7d32;
+color:white;
+}
+
+::ng-deep .error-snackbar{
+background:#e53935;
+color:white;
 }

@@ -1,8 +1,8 @@
 <div class="sidebar">
   <h4 class="text-white">Admin Panel</h4>
 
-<a routerLink="/users" routerLinkActive="active">Users</a>
-<a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
+  <a routerLink="/users" routerLinkActive="active">Users</a>
+  <a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
 
   <hr class="text-white">
 
@@ -11,76 +11,99 @@
 
 <div class="main-content">
 
-  <div class="topbar d-flex justify-content-between align-items-center">
-    <h4>Users Management</h4>
+  <div class="topbar">
+    <h3>Users Management</h3>
   </div>
 
-  <div class="card-custom">
+  <mat-card class="card-custom">
 
-    <input 
-      type="text"
-      class="form-control mb-3"
-      placeholder="Search by username or email"
-      [(ngModel)]="searchText"
-      (input)="applyFilters()"
-    />
+    <!-- Search -->
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Users</mat-label>
+      <input matInput
+             placeholder="Search by username or email"
+             [(ngModel)]="searchText"
+             (input)="applyFilters()">
+    </mat-form-field>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>SI.No</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th width="180">Actions</th>
-        </tr>
-      </thead>
+    <!-- Table -->
+    <table mat-table [dataSource]="paginatedUsers" class="mat-elevation-z1 user-table">
 
-      <tbody>
+      <!-- SI NO -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> SI.No </th>
+        <td mat-cell *matCellDef="let user; let i = index">
+          {{ (currentPage - 1) * pageSize + i + 1 }}
+        </td>
+      </ng-container>
 
-        <tr *ngIf="paginatedUsers.length === 0">
-          <td colspan="5" class="text-center">No users found</td>
-        </tr>
+      <!-- USERNAME -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+      </ng-container>
 
-        <tr *ngFor="let user of paginatedUsers; let i = index">
-          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <span class="badge bg-primary">{{ user.role }}</span>
-          </td>
-          <td>
-            <button class="btn btn-sm btn-success me-2"
-                    (click)="promoteUser(user.id)">
-              Promote
-            </button>
+      <!-- EMAIL -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+      </ng-container>
 
-            <button class="btn btn-sm btn-danger"
-                    (click)="deleteUser(user.id)">
-              Delete
-            </button>
-          </td>
-        </tr>
+      <!-- ROLE -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role </th>
+        <td mat-cell *matCellDef="let user">
+          <span class="role-badge">{{user.role}}</span>
+        </td>
+      </ng-container>
 
-      </tbody>
+      <!-- ACTIONS -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef width="180"> Actions </th>
+
+        <td mat-cell *matCellDef="let user">
+
+          <button mat-raised-button
+        class="promote-btn"
+        (click)="promoteUser(user.id)">
+  Promote
+</button>
+
+<button mat-raised-button
+        class="delete-btn"
+        (click)="deleteUser(user.id)">
+  Delete
+</button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
     </table>
 
-    <div class="d-flex justify-content-between mt-3">
-      <button class="btn btn-primary"
-              (click)="prevPage()"
-              [disabled]="currentPage === 1">
-        Previous
-      </button>
+    <!-- Pagination -->
+    <div class="pagination-box">
 
-      <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+      <button mat-raised-button
+        class="pagination-btn"
+        (click)="prevPage()"
+        [disabled]="currentPage === 1">
+  Previous
+</button>
 
-      <button class="btn btn-primary"
-              (click)="nextPage()"
-              [disabled]="currentPage === totalPages()">
-        Next
-      </button>
+<span>Page {{currentPage}} of {{totalPages()}}</span>
+
+<button mat-raised-button
+        class="pagination-btn"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages()">
+  Next
+</button>
+
     </div>
 
-  </div>
+  </mat-card>
 
 </div>

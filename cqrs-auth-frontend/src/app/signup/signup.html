@@ -1,30 +1,66 @@
 <div class="container mt-5">
-  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+  <mat-card class="shadow p-4 mx-auto" style="max-width: 400px;">
+
     <h2 class="text-center mb-4">Signup</h2>
 
     <div class="mb-3">
-      <label class="form-label">Username</label>
-      <input type="text" class="form-control"
-             [(ngModel)]="signupData.username" placeholder="Enter username">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Username</mat-label>
+
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="signupData.username"
+          placeholder="Enter username">
+
+      </mat-form-field>
+
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-control"
-             [(ngModel)]="signupData.email" placeholder="Enter email">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="signupData.email"
+          placeholder="Enter email">
+
+      </mat-form-field>
+
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Password</label>
-      <input type="password" class="form-control"
-             [(ngModel)]="signupData.password" placeholder="Enter password">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="signupData.password"
+          placeholder="Enter password">
+
+      </mat-form-field>
+
     </div>
 
-    <button class="btn btn-success w-100" (click)="onSignup()">Signup</button>
+    <button
+      mat-raised-button
+      class="w-100 signup-btn"
+      (click)="onSignup()">
+
+      Signup
+
+    </button>
 
     <p class="text-center mt-3">
       Already have an account?
       <a routerLink="/">Login</a>
     </p>
-  </div>
+
+  </mat-card>
 </div>

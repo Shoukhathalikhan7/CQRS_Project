@@ -9,56 +9,99 @@
 
   <h3 class="mb-4">Assign New Task</h3>
 
-  <div class="card p-4 mb-4 shadow">
+  <div class="card-box">
 
-    <input class="form-control mb-2"
-           placeholder="Title"
-           [(ngModel)]="taskData.title">
+    <mat-form-field appearance="outline" floatLabel="always" class="full-field">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="taskData.title">
+    </mat-form-field>
 
-    <textarea class="form-control mb-2"
-              placeholder="Description"
-              [(ngModel)]="taskData.description"></textarea>
+    <mat-form-field appearance="outline" floatLabel="always" class="full-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="taskData.description"></textarea>
+    </mat-form-field>
 
-    <input type="date"
-           class="form-control mb-2"
-           [(ngModel)]="taskData.deadline">
+    <mat-form-field appearance="outline" floatLabel="always" class="full-field">
+      <mat-label>Deadline</mat-label>
 
-    <select class="form-control mb-3"
-            [(ngModel)]="taskData.assignedToEmail">
-      <option value="">Select User</option>
-      <option *ngFor="let user of users"
-              [value]="user.email">
-        {{ user.username }} ({{ user.email }})
-      </option>
-    </select>
+      <input matInput
+             [matDatepicker]="picker"
+             [(ngModel)]="taskData.deadline">
 
-    <button class="btn btn-primary w-100"
-            (click)="addTask()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Select User</mat-label>
+
+      <mat-select [(ngModel)]="taskData.assignedToEmail">
+
+        <mat-option *ngFor="let user of users"
+                    [value]="user.email">
+          {{ user.username }} ({{ user.email }})
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    <button class="assign-btn" (click)="addTask()">
       Assign Task
     </button>
 
   </div>
 
-  <h4>All Tasks</h4>
 
-  <!-- 🔥 FILTER DROPDOWN -->
-<div class="mb-3" style="width: 220px; position: relative;">
-  
-  <select class="form-control custom-dropdown"
-          [(ngModel)]="selectedStatus">
-    <option value="All">All</option>
-    <option value="Pending">Pending</option>
-    <option value="Completed">Completed</option>
-  </select>
+  <h4 class="mt-4">All Tasks</h4>
 
-  <!-- Custom Arrow -->
-  <span class="dropdown-arrow">&#9662;</span>
+  <!-- FILTER SECTION -->
 
-</div>
+  <div class="filter-box">
 
-  <table class="table table-hover shadow">
-    <thead class="table-primary">
+    <!-- Status Filter -->
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+
+      <mat-select [(ngModel)]="selectedStatus">
+
+        <mat-option value="All">All</mat-option>
+        <mat-option value="Pending">Pending</mat-option>
+        <mat-option value="Completed">Completed</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- User Filter -->
+
+    <mat-form-field appearance="outline">
+      <mat-label>User</mat-label>
+
+      <mat-select [(ngModel)]="selectedUser">
+
+        <mat-option value="All">All Users</mat-option>
+
+        <mat-option *ngFor="let user of users"
+                    [value]="user.email">
+
+          {{user.username}}
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+
+  <table class="task-table">
+
+    <thead>
       <tr>
+        <th>SI.No</th>
         <th>Title</th>
         <th>Assigned To</th>
         <th>Status</th>
@@ -69,38 +112,47 @@
 
     <tbody>
 
-      <!-- No tasks -->
-      <tr *ngIf="filteredTasks.length === 0">
-        <td colspan="5" class="text-center text-muted">
-          No tasks available
-        </td>
-      </tr>
+      <tr *ngFor="let task of filteredTasks; let i = index">
 
-      <!-- Task rows -->
-      <tr *ngFor="let task of filteredTasks">
-        <td>{{ task.title }}</td>
-        <td>{{ task.assignedToEmail }}</td>
+        <td>{{ i + 1 }}</td>
+
+        <td>{{task.title}}</td>
+
+        <td>{{task.assignedToEmail}}</td>
+
         <td>
-          <span class="badge bg-warning"
-                *ngIf="task.status === 'Pending'">
+
+          <span class="pending"
+                *ngIf="task.status==='Pending'">
             Pending
           </span>
 
-          <span class="badge bg-success"
-                *ngIf="task.status === 'Completed'">
+          <span class="completed"
+                *ngIf="task.status==='Completed'">
             Completed
           </span>
+
         </td>
+
         <td>{{ task.deadline | date:'mediumDate' }}</td>
+
         <td>
-          <button class="btn btn-danger btn-sm"
-                  (click)="deleteTask(task.id)">
+
+          <button
+            *ngIf="task.status === 'Pending'"
+            class="delete-btn"
+            (click)="deleteTask(task.id)">
+
             Delete
+
           </button>
+
         </td>
+
       </tr>
 
     </tbody>
+
   </table>
 
 </div>

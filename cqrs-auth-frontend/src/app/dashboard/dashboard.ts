@@ -1,13 +1,22 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../auth';
 import { Router } from '@angular/router';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
+import { Auth } from '../auth';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './dashboard.html'
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule
+  ],
+  templateUrl: './dashboard.html',
+  styleUrls: ['./dashboard.css']
 })
 export class Dashboard implements OnInit {
 
@@ -20,36 +29,55 @@ export class Dashboard implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("Dashboard Loaded");
     this.loadMyTasks();
   }
 
   loadMyTasks(): void {
+
     this.auth.getMyTasks().subscribe({
+
       next: (res: any[]) => {
-        console.log("My Tasks:", res);
-        this.tasks = [...res];   // 🔥 Important
-        this.cd.detectChanges(); // 🔥 Force UI update
+
+        this.tasks = [...res];
+        this.cd.detectChanges();
+
       },
+
       error: (err) => {
         console.error("Error loading tasks:", err);
       }
+
     });
+
   }
+
   markCompleted(id: number) {
 
-  const payload = {
-    status: 'Completed'
-  };
+    const payload = { status: 'Completed' };
 
-  this.auth.updateTask(id, payload).subscribe({
-    next: () => {
-      this.loadMyTasks();  // reload list
-    },
-    error: (err) => {
-      console.error("Update error:", err);
-    }
-  });
+    this.auth.updateTask(id, payload).subscribe({
+
+      next: () => {
+        this.loadMyTasks();
+      },
+
+      error: (err) => {
+        console.error("Update error:", err);
+      }
+
+    });
+
+  }
+isStartingSoon(deadline: string): boolean {
+
+  const today = new Date();
+  const dueDate = new Date(deadline);
+
+  const diffTime = dueDate.getTime() - today.getTime();
+  const diffDays = diffTime / (1000 * 3600 * 24);
+
+  return diffDays <= 2 && diffDays >= 0;
+
 }
 
 
@@ -57,4 +85,5 @@ export class Dashboard implements OnInit {
     localStorage.clear();
     this.router.navigate(['/']);
   }
+
 }
