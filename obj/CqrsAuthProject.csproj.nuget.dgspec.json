@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\CqrsAuthProject.csproj": {}
+    "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\CqrsAuthProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\CqrsAuthProject.csproj": {
+    "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\CqrsAuthProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\CqrsAuthProject.csproj",
+        "projectUniqueName": "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\CqrsAuthProject.csproj",
         "projectName": "CqrsAuthProject",
-        "projectPath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\CqrsAuthProject.csproj",
+        "projectPath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\CqrsAuthProject.csproj",
         "packagesPath": "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\obj\\",
+        "outputPath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.1.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.72, )"
             },
             "MediatR": {
               "target": "Package",

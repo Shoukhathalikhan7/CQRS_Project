@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "kjmKdS9Y1Pw=",
+  "dgSpecHash": "rB+IUP6jMl0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\CqrsAuthProject\\CqrsAuthProject.csproj",
+  "projectFilePath": "C:\\Users\\ShoukhathalikhanN\\Downloads\\cqrsproject\\CQRS_Project\\CqrsAuthProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
+    "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\ShoukhathalikhanN\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

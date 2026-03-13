@@ -1,6 +1,7 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using CqrsAuthProject.Data;
+using Dapper;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using CqrsAuthProject.Models;
 using CqrsAuthProject.Application.Queries;
 
@@ -8,17 +9,21 @@ namespace CqrsAuthProject.Handlers;
 
 public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, List<User>>
 {
-    private readonly AppDbContext _context;
+    private readonly IConfiguration _configuration;
 
-    public GetAllUsersHandler(AppDbContext context)
+    public GetAllUsersHandler(IConfiguration configuration)
     {
-        _context = context;
+        _configuration = configuration;
     }
 
-public async Task<List<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
-{
-    return await _context.Users
-        .Where(u => u.Role == "User")
-        .ToListAsync();
-}
+    public async Task<List<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+    {
+        using IDbConnection db = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
+        var sql = "SELECT * FROM Users WHERE Role = @Role";
+
+        var users = await db.QueryAsync<User>(sql, new { Role = "User" });
+
+        return users.ToList();
+    }
 }
