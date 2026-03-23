@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebf77599480e72d11b505200ea38e0ff4986c2a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CqrsAuthProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

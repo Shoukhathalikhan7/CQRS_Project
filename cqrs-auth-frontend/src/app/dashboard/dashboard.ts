@@ -55,7 +55,7 @@ export class Dashboard implements OnInit {
 
     const payload = { status: 'Completed' };
 
-    this.auth.updateTask(id, payload).subscribe({
+    this.auth.updateTask(payload).subscribe({
 
       next: () => {
         this.loadMyTasks();

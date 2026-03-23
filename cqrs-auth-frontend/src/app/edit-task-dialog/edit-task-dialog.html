@@ -1,0 +1,53 @@
+<h2 mat-dialog-title class="dialog-title">Edit Task</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- TITLE -->
+  <mat-form-field appearance="outline" class="full-field">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="editData.title">
+  </mat-form-field>
+
+  <!-- DESCRIPTION -->
+  <mat-form-field appearance="outline" class="full-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="editData.description"></textarea>
+  </mat-form-field>
+
+  <!-- DEADLINE (DATE PICKER ✅) -->
+  <mat-form-field appearance="outline" class="full-field">
+    <mat-label>Deadline</mat-label>
+
+    <input matInput
+           [matDatepicker]="picker"
+           [(ngModel)]="editData.deadline">
+
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- USER DROPDOWN -->
+  <mat-form-field appearance="outline" class="full-field">
+    <mat-label>Select User</mat-label>
+
+    <mat-select [(ngModel)]="editData.assignedToEmail">
+      <mat-option *ngFor="let user of data.users"
+                  [value]="user.email">
+        {{ user.username }} ({{ user.email }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+
+  <button mat-button (click)="close()">Cancel</button>
+
+  <button mat-raised-button
+          class="update-btn"
+          (click)="save()">
+    Update
+  </button>
+
+</mat-dialog-actions>

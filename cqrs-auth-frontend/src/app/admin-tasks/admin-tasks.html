@@ -2,6 +2,7 @@
   <h4 class="text-white">Admin Panel</h4>
   <a routerLink="/users" routerLinkActive="active">Users</a>
   <a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
+  <a routerLink="/admin-learning" routerLinkActive="active">Learning Path</a>
   <a (click)="logout()">Logout</a>
 </div>
 
@@ -51,6 +52,9 @@
     </button>
 
   </div>
+
+  <!-- ✅ EDIT FORM -->
+
 
 
   <h4 class="mt-4">All Tasks</h4>
@@ -136,8 +140,19 @@
 
         <td>{{ task.deadline | date:'mediumDate' }}</td>
 
-        <td>
+ <td>
+  <div class="action-buttons">
 
+    <!-- 🔵 EDIT -->
+    <button mat-raised-button
+            *ngIf="task.status === 'Pending'"
+            color="primary"
+            class="edit-btn"
+            (click)="editTask(task)">
+      Edit
+    </button>
+
+    <!-- 🔴 DELETE -->
           <button
             *ngIf="task.status === 'Pending'"
             class="delete-btn"
@@ -147,7 +162,8 @@
 
           </button>
 
-        </td>
+  </div>
+</td>
 
       </tr>
 

@@ -1,0 +1,316 @@
+/* ===== MAIN ===== */
+.main-content {
+  margin-left: 220px;
+  padding: 25px;
+  background: #f5f7fb;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background: #2b4a8b;
+  color: #2b4a8b;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* ===== COURSE GRID ===== */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ===== COURSE CARD ===== */
+.course-card {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  border: 2px solid #2b4a8b;
+}
+
+.course-card h3 {
+  margin: 0;
+  color: #2b4a8b;
+}
+
+.course-card p {
+  font-size: 13px;
+  color: #555;
+}
+
+.course-card span {
+  font-size: 12px;
+  background: #e3ebff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #2b4a8b;
+}
+
+/* ===== VIDEO GRID ===== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* ===== VIDEO CARD ===== */
+.video-box {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.video-box h4 {
+  color: #2b4a8b;
+}
+
+/* ===== BUTTON ===== */
+button[mat-raised-button]:not(.course-delete-btn):not(.video-delete-btn) {
+  background: #003883 !important;
+  color: white !important;
+}
+
+/* ===== FORM ===== */
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* ===== ACTION BAR (FIX SPACING) ===== */
+.action-bar {
+  margin-bottom: 20px;
+}
+
+/* ===== BUTTON ===== */
+.action-bar button {
+  margin-bottom: 10px;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.topbar {
+  background: #f5f7fb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.action-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+/* COURSE CARD */
+.course-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+}
+
+.clickable {
+  cursor: pointer;
+  color: #1e40af;
+}
+
+.badge {
+  display: inline-block;
+  background: #e0ecff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* BUTTONS */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* VIDEO */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.video-box {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.video-input {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 5px;
+}
+
+.video-actions {
+  text-align: right;
+}
+
+/* FORM */
+.form-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.clickable-card {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clickable-card:hover {
+  transform: scale(1.02);
+}
+
+.video-form-clean {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.video-field {
+  flex: 1;
+  min-width: 250px;
+}
+
+.add-video-btn {
+  height: 56px;
+}
+
+.save-section {
+  text-align: right;
+  margin-top: 20px;
+}
+.clickable-card {
+  cursor: pointer;
+}
+
+.video-form-clean {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.video-field {
+  flex: 1;
+}
+
+.btn-wrapper {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.save-section {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* MODAL */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+}
+/* ===== GLOBAL BUTTON (DEFAULT BLUE) ===== */
+/* button[mat-raised-button]:not(.video-delete-btn) {
+  background: #003883 !important;
+  color: white !important;
+} */
+
+/* ===== VIDEO ACTIONS ===== */
+  .video-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  /* EDIT BUTTON */
+  .video-edit-btn {
+    background-color: #003883 !important;
+    color: white !important;
+    border-radius: 6px;
+    min-width: 70px;
+  }
+
+  /* DELETE BUTTON (FORCE ORANGE) */
+  .video-delete-btn {
+    background-color: #EE7D11 !important;
+    color: white !important;
+    border-radius: 6px;
+    min-width: 70px;
+    margin-left: 87px;
+  }
+
+  /* 🔥 FORCE OVERRIDE MATERIAL */
+  .video-delete-btn.mat-mdc-raised-button {
+    background-color: #EE7D11 !important;
+  }
+
+  /* OPTIONAL HOVER EFFECTS */
+  .video-edit-btn:hover {
+    background-color: #4D5F9B !important;
+  }
+
+  .video-delete-btn:hover {
+    background-color: #d96b0d !important;
+  }
+
+  .course-delete-btn {
+  background-color: #EE7D11 !important;
+  color: white !important;
+  border-radius: 6px;
+  padding: 6px 14px;
+  margin-left: 80px;
+}
+
+/* hover */
+.course-delete-btn:hover {
+  background-color: #d96b0d !important;
+}

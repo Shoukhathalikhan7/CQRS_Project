@@ -61,6 +61,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
+
 // --------------------
 // MediatR (CQRS)
 // --------------------
@@ -86,6 +87,10 @@ var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new Exception("JWT Key missing");
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.CustomSchemaIds(type => type.FullName); // ✅ FIX
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -103,7 +108,8 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "")
+        )
     };
 });
 
@@ -132,6 +138,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.MapControllers();
 

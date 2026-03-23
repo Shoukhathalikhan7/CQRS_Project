@@ -17,6 +17,8 @@ import { ConfirmDialog } from '../users/confirm-dialog';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditTaskDialog } from '../edit-task-dialog/edit-task-dialog';
+
 
 
 @Component({
@@ -54,6 +56,74 @@ export class AdminTasks implements OnInit {
     deadline: '',
     assignedToEmail: ''
   };
+
+editingTaskId: number | null = null;
+
+editData = {
+  title: '',
+  description: '',
+  deadline: '',
+  assignedToEmail: ''
+};
+
+cancelEdit() {
+  this.editingTaskId = null;
+}
+
+
+editTask(task: any) {
+
+  const dialogRef = this.dialog.open(EditTaskDialog, {
+    width: '450px',
+    data: {
+      ...task,
+      users: this.users
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log("DIALOG RESULT:", result); // ✅ debug
+
+    if (result) {
+
+      const payload = {
+        id: task.id,
+        title: result.title,
+        description: result.description,
+        deadline: result.deadline,
+        assignedToEmail: result.assignedToEmail,
+        status: task.status
+      };
+
+      console.log("PAYLOAD SENT:", payload); // ✅ debug
+
+      this.auth.updateTask(payload).subscribe({
+
+        next: () => {
+          console.log("UPDATE SUCCESS");
+          this.loadTasks(); // ✅ refresh UI
+          this.snackBar.open('Task updated', 'Close', {
+  duration: 3000,
+  horizontalPosition: 'center',   // ✅ center
+  verticalPosition: 'top',        // ✅ top
+  panelClass: 'success-snackbar'  // ✅ custom green style
+});
+        },
+
+        error: (err) => {
+          console.error("UPDATE ERROR:", err);
+        }
+
+      });
+
+    }
+
+  });
+
+}
+
+
 
   constructor(
     private auth: Auth,
@@ -96,19 +166,17 @@ export class AdminTasks implements OnInit {
 
       next: (res: any) => {
 
-        if (res && res.$values) {
+   const data = res?.$values || res || [];
 
-          this.tasks = res.$values;
+// ✅ SORT: Pending first, Completed last
+this.tasks = data.sort((a: any, b: any) => {
 
-        } else if (Array.isArray(res)) {
+  if (a.status === 'Pending' && b.status !== 'Pending') return -1;
 
-          this.tasks = res;
+  if (a.status !== 'Pending' && b.status === 'Pending') return 1;
 
-        } else {
-
-          this.tasks = [];
-
-        }
+  return 0;
+});
 
         this.cd.detectChanges();
 
@@ -143,7 +211,14 @@ export class AdminTasks implements OnInit {
 
     }
 
-    return tasks;
+    return tasks.sort((a: any, b: any) => {
+
+  if (a.status === 'Pending' && b.status !== 'Pending') return -1;
+
+  if (a.status !== 'Pending' && b.status === 'Pending') return 1;
+
+  return 0;
+});
 
   }
 
@@ -265,6 +340,27 @@ export class AdminTasks implements OnInit {
     });
 
   }
+
+updateTask() {
+
+  const payload = {
+    id: this.editingTaskId,
+    ...this.editData,
+    status: 'Pending'
+  };
+
+
+
+  this.auth.updateTask(payload).subscribe({
+    next: () => {
+      this.loadTasks();
+      this.cancelEdit();
+    }
+  });
+
+}
+
+
 
 
   logout() {

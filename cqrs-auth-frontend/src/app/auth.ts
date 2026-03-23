@@ -58,6 +58,8 @@ deleteUser(id: number) {
   );
 }
 
+
+
 promoteUser(id: number) {
   const token = localStorage.getItem('token');
 
@@ -106,17 +108,10 @@ getMyTasks(): Observable<any[]> {
   });
 }
 
-updateTask(id: number, data: any) {
-  const token = localStorage.getItem('token');
-
+updateTask(data: any) {
   return this.http.put(
-    `${this.apiUrl}/update-task/${id}`,
-    data,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+    `http://localhost:5195/api/auth/update-task/${data.id}`,
+    data
   );
 }
 

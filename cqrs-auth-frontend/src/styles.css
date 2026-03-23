@@ -94,3 +94,9 @@ body {
 .mat-datepicker-content{
   background:white !important;
 }
+
+.error-snackbar{
+  background-color: #d32f2f !important;
+  color: white !important;
+  font-weight: 500;
+}

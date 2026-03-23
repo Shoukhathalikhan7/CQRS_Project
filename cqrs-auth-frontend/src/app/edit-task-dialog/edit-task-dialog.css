@@ -1,0 +1,33 @@
+.dialog-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+/* Same as your assign form */
+.full-field {
+  width: 100%;
+}
+
+/* THEME BUTTON */
+.update-btn {
+  background-color: #2b4a8b !important;
+  color: white !important;
+  padding: 6px 20px;
+  border-radius: 4px;
+}
+
+.update-btn:hover {
+  background-color: #1e3a6d !important;
+}
+
+/* Spacing */
+.dialog-actions {
+  margin-top: 10px;
+}

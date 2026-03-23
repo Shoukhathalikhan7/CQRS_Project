@@ -202,6 +202,7 @@ C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\C
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\Azure.Identity.dll
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\Dapper.dll
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\Humanizer.dll
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\MediatR.dll
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\MediatR.Contracts.dll
@@ -351,4 +352,3 @@ C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\obj\Debug\net9.0\r
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\obj\Debug\net9.0\CqrsAuthProject.pdb
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\obj\Debug\net9.0\CqrsAuthProject.genruntimeconfig.cache
 C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\obj\Debug\net9.0\ref\CqrsAuthProject.dll
-C:\Users\ShoukhathalikhanN\Downloads\cqrsproject\CQRS_Project\bin\Debug\net9.0\Dapper.dll

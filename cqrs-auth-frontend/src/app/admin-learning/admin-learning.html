@@ -1,0 +1,183 @@
+<div class="sidebar">
+  <h4 class="text-white">Admin Panel</h4>
+
+  <a routerLink="/users" routerLinkActive="active">Users</a>
+  <a routerLink="/admin-tasks" routerLinkActive="active">Task Items</a>
+  <a routerLink="/admin-learning" routerLinkActive="active">Learning Path</a>
+
+  <hr class="text-white">
+
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <div class="topbar">
+    <h2>Learning Management</h2>
+  </div>
+
+  <!-- ================= LIST ================= -->
+  <div *ngIf="view === 'list'">
+
+    <div class="action-bar">
+      <button mat-raised-button color="primary" (click)="openAddCourse()">+ Add Course</button>
+      <button mat-raised-button color="accent" (click)="saveAllCourses()">💾 Save All</button>
+    </div>
+
+    <div class="course-grid">
+      <ng-container *ngFor="let course of courses; let i = index">
+        <div *ngIf="!course.isDeleted"
+             class="course-card clickable-card"
+             (click)="openCourse(i)">
+
+          <h3>{{course.title}}</h3>
+          <p>{{course.description}}</p>
+
+          <span class="badge">{{course.videos?.length || 0}} Videos</span>
+
+<button mat-raised-button class="course-delete-btn"
+        (click)="deleteCourse(course,i); $event.stopPropagation()">
+  Delete
+</button>
+
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- ================= ADD ================= -->
+  <div *ngIf="view === 'add'">
+    <mat-card class="card-custom">
+      <h2>Add Course</h2>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Title" [(ngModel)]="newCourse.title">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Description" [(ngModel)]="newCourse.description"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="saveCourseLocal()">Add</button>
+      <button mat-button (click)="view='list'">Cancel</button>
+    </mat-card>
+  </div>
+
+  <!-- ================= DETAIL ================= -->
+  <div *ngIf="view === 'detail' && selectedCourse">
+
+    <button mat-button (click)="backToList()">⬅ Back</button>
+
+    <mat-card class="card-custom">
+
+      <!-- COURSE -->
+      <h2>Course Details</h2>
+
+      <div *ngIf="!selectedCourse.isEditing; else editCourse">
+        <p><b>Title:</b> {{selectedCourse.title}}</p>
+        <p><b>Description:</b> {{selectedCourse.description}}</p>
+
+        <button mat-raised-button color="primary" (click)="enableCourseEdit()">
+          Edit
+        </button>
+      </div>
+
+      <ng-template #editCourse>
+        <mat-form-field class="full-width">
+          <input matInput [(ngModel)]="selectedCourse.title">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <textarea matInput [(ngModel)]="selectedCourse.description"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="saveCourseEdit()">Save</button>
+        <button mat-button (click)="cancelCourseEdit()">Cancel</button>
+      </ng-template>
+
+      <hr>
+
+      <!-- ADD VIDEO -->
+      <h3>Add Video</h3>
+
+      <div class="video-form-clean">
+
+        <mat-form-field class="video-field">
+          <input matInput placeholder="Video Title" [(ngModel)]="newVideo.title">
+        </mat-form-field>
+
+        <mat-form-field class="video-field">
+          <input matInput placeholder="YouTube URL" [(ngModel)]="newVideo.videoUrl">
+        </mat-form-field>
+
+        <div class="btn-wrapper">
+          <button mat-raised-button color="primary"
+                  (click)="addVideoToCourse()"
+                  [disabled]="!newVideo.title || !newVideo.videoUrl">
+            + Add Video
+          </button>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <!-- VIDEO LIST -->
+      <div class="video-grid">
+        <ng-container *ngFor="let v of selectedCourse.videos; let i = index">
+
+          <div *ngIf="!v.isDeleted" class="video-box">
+
+            <p>{{v.title}}</p>
+
+            <iframe width="100%" height="180"
+                    [src]="getSafeUrl(v.videoUrl)">
+            </iframe>
+
+  <button mat-raised-button class="video-edit-btn"
+          (click)="openVideoEdit(v)">
+    Edit
+  </button>
+
+  <button mat-raised-button class="video-delete-btn"
+          (click)="deleteVideo(v, i)">
+    Delete
+</button>
+
+          </div>
+
+        </ng-container>
+      </div>
+
+      <div class="save-section">
+        <button mat-raised-button color="accent" (click)="saveAllCourses()">
+          💾 Save All
+        </button>
+      </div>
+
+    </mat-card>
+  </div>
+
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal-backdrop" *ngIf="isVideoModalOpen">
+
+  <div class="modal-box" (click)="$event.stopPropagation()">
+
+    <h3>Edit Video</h3>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="editingVideo.title">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="editingVideo.videoUrl">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveVideoEdit()">Save</button>
+    <button mat-button (click)="closeVideoModal()">Cancel</button>
+
+  </div>
+
+</div>

@@ -139,15 +139,19 @@ public async Task<IActionResult> GetMyTasks()
 
     return Ok(tasks);
 }
-    [Authorize]
+[Authorize(Roles = "Admin")]
 [HttpPut("update-task/{id}")]
-public async Task<IActionResult> UpdateTask(int id, TaskItem updatedTask)
+public async Task<IActionResult> UpdateTask(int id, [FromBody] UpdateTaskDto dto)
 {
     var task = await _context.Tasks.FindAsync(id);
-    if (task == null) return NotFound();
 
-    task.Status = updatedTask.Status;
-    task.Comment = updatedTask.Comment;
+    if (task == null)
+        return NotFound();
+
+    task.Title = dto.Title;
+    task.Description = dto.Description;
+    task.Deadline = dto.Deadline.ToUniversalTime();
+    task.AssignedToEmail = dto.AssignedToEmail;
 
     await _context.SaveChangesAsync();
 

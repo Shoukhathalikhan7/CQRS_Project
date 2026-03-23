@@ -5,6 +5,8 @@ import { Dashboard } from './dashboard/dashboard';
 import { Users } from './users/users';
 import { AdminTasks } from './admin-tasks/admin-tasks';
 import { authGuard } from './auth-guard';
+import { AdminLearningComponent } from './admin-learning/admin-learning';
+
 
 export const routes: Routes = [
 
@@ -24,6 +26,9 @@ export const routes: Routes = [
 {
   path: 'admin-tasks',
   component: AdminTasks
-}
+},
+{ path: 'admin-learning', 
+  component: AdminLearningComponent 
+},
 
 ];
