@@ -6,6 +6,8 @@ import { Users } from './users/users';
 import { AdminTasks } from './admin-tasks/admin-tasks';
 import { authGuard } from './auth-guard';
 import { AdminLearningComponent } from './admin-learning/admin-learning';
+import { LearningView } from './learning-view/learning-view';
+
 
 
 export const routes: Routes = [
@@ -18,6 +20,11 @@ export const routes: Routes = [
     component: Dashboard,
     canActivate: [authGuard]
   },
+  {
+  path: 'learning',
+  component: LearningView
+},
+
 
 {
   path: 'users',

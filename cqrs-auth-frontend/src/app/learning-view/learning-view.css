@@ -1,0 +1,127 @@
+/* MAIN CONTENT */
+.main-content{
+  margin-left:220px;
+  padding:30px;
+  background:#f5f6fa;
+  min-height:100vh;
+}
+
+/* TITLE */
+.page-title{
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+/* GRID */
+.task-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:25px;
+  align-items:stretch;
+}
+
+/* CARD */
+.task-card{
+  background:#fff;
+  border:1px solid #e0e0e0;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  transition:0.2s;
+  height:100%;
+}
+
+/* HOVER */
+.task-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* CARD BODY */
+.card-body{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+/* TOP CONTENT */
+.card-top{
+  flex-grow:1;
+}
+
+/* TITLE */
+.task-title{
+  font-weight:600;
+  margin-bottom:6px;
+  font-size:18px;
+}
+
+/* DESCRIPTION */
+.task-desc{
+  color:#777;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+/* DEADLINE */
+.task-deadline{
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* STATUS ROW */
+.status-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* STATUS BADGE */
+.status{
+  padding:4px 12px;
+  border-radius:15px;
+  font-size:12px;
+  font-weight:500;
+}
+
+.status.pending{
+  background:#ffc107;
+  color:#000;
+}
+
+.status.completed{
+  background:#198754;
+  color:#fff;
+}
+
+.status.overdue{
+  background:#dc3545;
+  color:#fff;
+}
+
+/* STARTING SOON */
+.starting-soon{
+  background:#ffe8a1;
+  color:#856404;
+  padding:4px 12px;
+  border-radius:15px;
+  font-size:12px;
+}
+
+/* BUTTON */
+.complete-btn{
+  margin-top:20px;
+  width:100%;
+  background:#2b4a8b !important;
+  color:white !important;
+  border-radius:6px;
+}
+
+/* NO TASK */
+.no-task{
+  padding:20px;
+  text-align:center;
+}
+.no-task h3{
+  color:#777;
+  font-weight:500;
+}

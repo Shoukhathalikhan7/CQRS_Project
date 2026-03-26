@@ -58,6 +58,10 @@ deleteUser(id: number) {
   );
 }
 
+getLearningCourses() {
+  return this.http.get('http://localhost:5195/api/learningpath'); // same API used in admin GET
+}
+
 
 
 promoteUser(id: number) {

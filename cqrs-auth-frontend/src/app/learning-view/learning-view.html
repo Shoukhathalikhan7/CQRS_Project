@@ -1,1 +1,61 @@
-<p>learning-view works!</p>
+<div class="sidebar">
+  <h4 class="text-white">User Panel</h4>
+
+  <a routerLink="/dashboard" routerLinkActive="active">My Tasks</a>
+  <a routerLink="/learning" routerLinkActive="active">Learning</a>
+  <a (click)="logout()">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <h3 class="page-title">Learning Path</h3>
+
+  <!-- EMPTY -->
+  <mat-card *ngIf="!courses || courses.length === 0" class="no-task">
+    No learning content available.
+  </mat-card>
+
+  <!-- COURSE GRID -->
+  <div class="task-grid">
+
+    <mat-card class="task-card" *ngFor="let course of courses">
+
+      <mat-card-content class="card-body">
+
+        <div class="card-top">
+
+          <!-- COURSE TITLE -->
+          <h4 class="task-title">{{ course.title }}</h4>
+
+          <!-- DESCRIPTION -->
+          <p class="task-desc">
+            {{ course.description }}
+          </p>
+
+          <!-- VIDEO COUNT -->
+          <p class="task-deadline">
+            <strong>{{ course.videos.length }} Videos</strong>
+          </p>
+
+          <!-- VIDEOS -->
+          <div *ngFor="let v of course.videos">
+
+            <p class="task-desc">{{ v.title }}</p>
+
+            <iframe width="100%" height="180"
+                    [src]="getSafeUrl(v.videoUrl)">
+            </iframe>
+
+            <hr>
+
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+
 
 import { Auth } from '../auth';
 
@@ -13,7 +15,8 @@ import { Auth } from '../auth';
   imports: [
     CommonModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule 
   ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']

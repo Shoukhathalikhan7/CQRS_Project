@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
 import { LearningService } from '../services/learning-service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-learning',
@@ -16,6 +17,7 @@ import { LearningService } from '../services/learning-service';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
